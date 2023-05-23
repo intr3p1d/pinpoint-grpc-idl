@@ -45,6 +45,8 @@ message PSpan {
 
     int32 applicationServiceType = 15;
     int32 loggingTransactionInfo = 16;
+
+    string uriTemplate = 17;
 }
 
 message PTransactionId {
@@ -89,6 +91,28 @@ message PSpanEvent {
 
     PNextEvent nextEvent = 12;
     int32 asyncEvent = 13;
+
+    PSpanEventException flushedException = 14;
+}
+
+message PSpanEventException {
+    repeated PException exceptions = 1;
+    int64 startTime = 2;
+    int64 exceptionId = 3;
+}
+
+message PException {
+    string exceptionClassName = 1;
+    string exceptionMessage = 2;
+
+    repeated PStackTraceElement stackTraceElement = 3;
+}
+
+message PStackTraceElement {
+    string className = 1;
+    string fileName = 2;
+    int32 lineNumber = 3;
+    string methodName = 4;
 }
 
 message PNextEvent {
@@ -120,6 +144,7 @@ message PSpanChunk {
 
     PLocalAsyncId localAsyncId = 8;
 
+    string uriTemplate = 9;
 }
 
 // 1.6.x- : version = 0;
