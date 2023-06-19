@@ -17,6 +17,11 @@ service Span {
     }
 }
 
+service ExceptionTrace {
+    rpc SendException (stream PSpanEventException) returns (google.protobuf.Empty) {
+    }
+}
+
 service Agent {
     rpc RequestAgentInfo (PAgentInfo) returns (PResult) {
     }
