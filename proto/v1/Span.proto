@@ -14,7 +14,6 @@ message PSpanMessage {
     oneof field {
         PSpan span = 1;
         PSpanChunk spanChunk = 2;
-        PSpanEventException exception = 3;
     }
 }
 
